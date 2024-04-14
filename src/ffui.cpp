@@ -58,7 +58,7 @@ string ffui(vector<string> items) {
 
   while (true) {
     // Show items
-    for (int idx = 0; idx < 15; idx++) {
+    for (int idx = 0; idx < matchedItems.size(); idx++) {
       if (cursorPos == (h - selectMenuUnderY - idx)) {
         // hightlight select item
         attron(COLOR_PAIR(SELECT_ITEM));
