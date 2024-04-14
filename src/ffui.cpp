@@ -58,7 +58,7 @@ string ffui(vector<string> items) {
 
   while (true) {
     // Show items
-    for (int idx = 0; idx < matchedItems.size(); idx++) {
+    for (int idx = 0; idx < 15; idx++) {
       if (cursorPos == (h - selectMenuUnderY - idx)) {
         // hightlight select item
         attron(COLOR_PAIR(SELECT_ITEM));
@@ -128,13 +128,12 @@ string ffui(vector<string> items) {
         break;
       } else
 
-          if (c >= 0x00 && c <= 0x7F) {
+      if (c >= 0x00 && c <= 0x7F) {
         search_query.push_back(c);
+        // fuzzy match and sorting
+        sortFuzzy(search_query, matchedItems);
       }
-
-      // fuzzy match and sorting
-      sortFuzzy(search_query, matchedItems);
-      erase();
+      
 
       break;
     }

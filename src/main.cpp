@@ -8,8 +8,9 @@ int main() {
   using namespace std;
 
   vector<string> choices = {
-      "file1.cpp", "file2.h",   "main.cpp", "README.md", "config.json",
-      "image.jpg", "script.sh", "data.csv", "test.cpp",  "util.h"};
+      "file1.cpp", "file2.h",   "main.cpp", "README.md", 
+      "config.json", "file2.cpp", "file3.h",   "text.cpp","util.h"
+  };
 
   string selected = ffui(choices);
   printf("%s\n", selected.c_str());
