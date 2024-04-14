@@ -26,7 +26,7 @@ https://github.com/Comamoca/haru/assets/93137338/e00ca0b1-9466-4493-8f4b-6348570
 
 ## 🚀 How to use
 
-```
+```cpp
 #include "ffui.hpp"
 #include <stdio.h>
 
