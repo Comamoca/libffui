@@ -1,13 +1,13 @@
 #include <chrono>
+#include <cstdlib>
+#include <cstring>
 #include <locale>
 #include <ncurses.h>
 #include <rapidfuzz/fuzz.hpp>
 #include <stdio.h>
 #include <string>
-#include <cstring>
 #include <thread>
 #include <vector>
-
 
 using namespace std;
 
@@ -16,6 +16,15 @@ using namespace std;
 #define SELECT_ITEM 3
 #define COLOR_DEFAULT -1
 #define ctrl(x) ((x)&0x1f)
+
+template <typename T>
+std::vector<T> slice(std::vector<T> const &v, int m, int n) {
+  auto first = v.cbegin() + m;
+  auto last = v.cbegin() + n + 1;
+
+  std::vector<T> vec(first, last);
+  return vec;
+}
 
 void delete_str(std::string &text);
 void sortFuzzy(std::string query, std::vector<std::string> &items);
@@ -45,6 +54,7 @@ string ffui(vector<string> items) {
 
   int w, h;
   int cursorPos;
+  // int matchedItemsMaxY;
   string select_item;
   string search_query;
 
@@ -69,12 +79,6 @@ string ffui(vector<string> items) {
         mvprintw(h - selectMenuUnderY - idx, 3, matchedItems[idx].c_str());
       }
     }
-
-    // for (int idx = 0; idx < matchedItems.size(); idx++) {
-    //     mvprintw(h - 17 - idx, 3, matchedItems[idx].c_str());
-    // }
-
-    // cbreak();
 
     int c = getch();
 
@@ -128,12 +132,11 @@ string ffui(vector<string> items) {
         break;
       } else
 
-      if (c >= 0x00 && c <= 0x7F) {
+          if (c >= 0x00 && c <= 0x7F) {
         search_query.push_back(c);
         // fuzzy match and sorting
         sortFuzzy(search_query, matchedItems);
       }
-      
 
       break;
     }
@@ -141,11 +144,16 @@ string ffui(vector<string> items) {
     // DEBUG
     // mvprintw(10, 3, select_item.c_str());
     // mvprintw(12, 3, "%d", matchedItems.size());
+    // mvprintw(1, 0, "%d", cursorPos);
+    // mvprintw(2, 0, "%d", w);
+    // mvprintw(3, 0, "%d", matchedItemsMaxY);
+
 
     // cursorPos top stopper
-    if (cursorPos <= (h - selectMenuUnderY - items.size() + 1)) {
-      cursorPos = h - selectMenuUnderY - items.size() + 1;
+    if (cursorPos <= 0) {
+	    cursorPos = 0;
     }
+
 
     // cursorPos under stopper
     if (cursorPos >= (h - selectMenuUnderY)) {
