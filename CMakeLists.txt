@@ -16,6 +16,7 @@ include(FetchContent)
 
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
+include_directories(src)
 
 FetchContent_Declare(rapidfuzz
   GIT_REPOSITORY https://github.com/rapidfuzz/rapidfuzz-cpp.git
