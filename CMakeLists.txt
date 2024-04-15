@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(OUT_NAME app)
+set(OUT_NAME ffui_app)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -22,12 +22,12 @@ FetchContent_Declare(rapidfuzz
   GIT_TAG main)
 FetchContent_MakeAvailable(rapidfuzz)
 
-add_executable(app src/main.cpp src/ffui.cpp)
+add_executable(${OUT_NAME} src/main.cpp src/ffui.cpp)
 
 # add_executable(appc src/main.c src/ffui.cpp)
 
-target_link_libraries(app PRIVATE rapidfuzz::rapidfuzz)
-target_link_libraries(app PRIVATE ${CURSES_LIBRARY})
+target_link_libraries(${OUT_NAME} PRIVATE rapidfuzz::rapidfuzz)
+target_link_libraries(${OUT_NAME} PRIVATE ${CURSES_LIBRARY})
 
 # target_link_libraries(appc PRIVATE rapidfuzz::rapidfuzz)
 # target_link_libraries(appc PRIVATE ${CURSES_LIBRARY})
