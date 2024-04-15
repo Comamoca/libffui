@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(
-  cpp-ansi
+  ffui
   VERSION 1.0
   LANGUAGES CXX)
 
