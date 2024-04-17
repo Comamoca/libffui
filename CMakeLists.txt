@@ -41,5 +41,5 @@ add_library(ffui STATIC
     src/ffui.cpp
 )
 
-target_link_libraries(ffui PRIVATE rapidfuzz::rapidfuzz)
+target_link_libraries(ffui PUBLIC rapidfuzz::rapidfuzz)
 target_link_libraries(ffui PRIVATE ${CURSES_LIBRARY})
