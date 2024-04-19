@@ -72,11 +72,11 @@ string ffui(vector<string> items) {
       if (cursorPos == (h - selectMenuUnderY - idx)) {
         // hightlight select item
         attron(COLOR_PAIR(SELECT_ITEM));
-        mvprintw(h - selectMenuUnderY - idx, 3, matchedItems[idx].c_str());
+        mvprintw(h - selectMenuUnderY - idx, 3, "%s", matchedItems[idx].c_str());
         select_item = matchedItems[idx];
         attroff(COLOR_PAIR(SELECT_ITEM));
       } else {
-        mvprintw(h - selectMenuUnderY - idx, 3, matchedItems[idx].c_str());
+        mvprintw(h - selectMenuUnderY - idx, 3, "%s", matchedItems[idx].c_str());
       }
     }
 
@@ -174,20 +174,20 @@ string ffui(vector<string> items) {
     string matchedItemsLen = to_string(matchedItems.size());
 
     if (matchedItemsLen.size() >= 2) {
-      mvprintw(h - 2, 3, matchedItemsLen.c_str());
+      mvprintw(h - 2, 3, "%s", matchedItemsLen.c_str());
       mvprintw(h - 2, 5, "/");
-      mvprintw(h - 2, 6, "%d", items.size());
+      mvprintw(h - 2, 6, "%ld", items.size());
 
       mvhline(h - 2, 9, '-', w);
     } else {
-      mvprintw(h - 2, 3, matchedItemsLen.c_str());
+      mvprintw(h - 2, 3, "%s", matchedItemsLen.c_str());
       mvprintw(h - 2, 4, "/");
-      mvprintw(h - 2, 5, "%d", items.size());
+      mvprintw(h - 2, 5, "%ld", items.size());
 
       mvhline(h - 2, 7, '-', w);
     }
 
-    mvprintw(h - 1, 3, search_query.c_str());
+    mvprintw(h - 1, 3, "%s", search_query.c_str());
     // getstr(&search_query);
 
     // 60FPS
